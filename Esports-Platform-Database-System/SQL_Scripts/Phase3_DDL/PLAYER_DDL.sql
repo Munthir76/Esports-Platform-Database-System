@@ -1,0 +1,9 @@
+CREATE TABLE PLAYER (
+  Player_ID  NUMBER PRIMARY KEY,
+  Name       VARCHAR2(100) NOT NULL,
+  Username   VARCHAR2(50) UNIQUE NOT NULL,
+  Email      VARCHAR2(100),
+  Rank       VARCHAR2(30),
+  Team_ID    NUMBER,
+  CONSTRAINT fk_player_team FOREIGN KEY (Team_ID) REFERENCES TEAM(Team_ID)
+);

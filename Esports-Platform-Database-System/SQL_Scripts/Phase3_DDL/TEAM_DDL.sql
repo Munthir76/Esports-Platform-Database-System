@@ -1,0 +1,5 @@
+CREATE TABLE TEAM (
+  Team_ID    NUMBER PRIMARY KEY,
+  Team_Name  VARCHAR2(100) NOT NULL,
+  Captain_ID NUMBER
+);

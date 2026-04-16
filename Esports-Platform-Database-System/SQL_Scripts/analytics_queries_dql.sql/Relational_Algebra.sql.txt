@@ -1,0 +1,58 @@
+-- =============================================================
+-- Project: E-sports Platform Database System
+-- Component: Analytical Queries (DQL) based on Relational Algebra
+-- Author: Munther Salim Alfarsi
+-- Course: CPIT-240 (Database Systems)
+-- =============================================================
+
+-- [Query 1]: Players and Teams
+-- Definition: List the names of all players along with the names of their respective teams.
+-- Relational Algebra: π Name, Team_Name (PLAYER ⨝ PLAYER.Team_ID = TEAM.Team_ID TEAM) [cite: 251-252]
+SELECT P.Name, T.Team_Name
+FROM PLAYER P
+JOIN TEAM T ON P.Team_ID = T.Team_ID; [cite: 256-258]
+
+
+-- [Query 2]: Matches and Tournaments
+-- Definition: Display the Match ID and Date for each match, along with the name of the tournament it belongs to.
+-- Relational Algebra: π Match_ID, Match_Date, Tournament_Name (MATCH ⨝ MATCH.Tournament_ID = TOURNAMENT.Tournament_ID TOURNAMENT) [cite: 259-260]
+SELECT M.Match_ID, M.Match_Date, T.Tournament_Name
+FROM "MATCH" M
+JOIN TOURNAMENT T ON M.Tournament_ID = T.Tournament_ID; [cite: 264-266]
+
+
+-- [Query 3]: Match Winners
+-- Definition: Display the Match ID and the name of the winning team for each match.
+-- Relational Algebra: π Match_ID, Team_Name (MATCH ⨝ MATCH.Winner_ID = TEAM.Team_ID TEAM) [cite: 267-268]
+SELECT M.Match_ID, T.Team_Name AS Winner_Name
+FROM "MATCH" M
+JOIN TEAM T ON M.Winner_ID = T.Team_ID; [cite: 272-274]
+
+
+-- [Query 4]: Players per Rank
+-- Definition: Count the total number of players associated with each Rank (e.g., Diamond, Platinum).
+-- Relational Algebra: Rank ℑ COUNT(Player_ID) (PLAYER) [cite: 275-276]
+SELECT Rank, COUNT(Player_ID) AS Total_Players
+FROM PLAYER
+GROUP BY Rank; [cite: 280-282]
+
+
+-- [Query 5]: Matches per Tournament
+-- Definition: Count the total number of matches played in each tournament.
+-- Relational Algebra: Tournament_ID ℑ COUNT(Match_ID) (MATCH) [cite: 283-284]
+SELECT Tournament_ID, COUNT(Match_ID) AS Total_Matches
+FROM "MATCH"
+GROUP BY Tournament_ID; [cite: 288-290]
+
+
+-- [Query 6]: Wins per Team
+-- Definition: Calculate the total number of matches won by each team (grouping by Winner ID).
+-- Relational Algebra: Winner_ID ℑ COUNT(Match_ID) (MATCH) [cite: 291-292]
+SELECT Winner_ID, COUNT(Match_ID) AS Total_Wins
+FROM "MATCH"
+WHERE Winner_ID IS NOT NULL
+GROUP BY Winner_ID; [cite: 296-299]
+
+
+
+

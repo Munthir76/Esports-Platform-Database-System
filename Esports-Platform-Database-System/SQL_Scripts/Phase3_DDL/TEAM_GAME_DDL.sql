@@ -1,0 +1,7 @@
+CREATE TABLE TEAM_GAME (
+  Team_ID   NUMBER,
+  Game_Title VARCHAR2(100),
+  CONSTRAINT pk_team_game PRIMARY KEY (Team_ID, Game_Title),
+  CONSTRAINT fk_tg_team FOREIGN KEY (Team_ID) REFERENCES TEAM(Team_ID),
+  CONSTRAINT fk_tg_game FOREIGN KEY (Game_Title) REFERENCES GAME(Game_Title)
+);

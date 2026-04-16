@@ -1,0 +1,5 @@
+CREATE TABLE GAME (
+  Game_Title VARCHAR2(100) PRIMARY KEY,
+  Genre      VARCHAR2(50),
+  Platform   VARCHAR2(50)
+);
